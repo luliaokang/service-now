@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Zoom Meeting" max_length="40" name="x_299591_zoomdev_zoom_meeting" type="collection">
+        <element label="Creator" max_length="40" name="creator" type="string"/>
+        <element choice="1" label="Incident" max_length="40" name="incident" reference="incident" type="reference" use_dependent_field="true">
+            <choice/>
+        </element>
+        <element label="Inviters" max_length="1000" name="inviters" type="string"/>
+        <element label="Join link" max_length="40" name="join_link" type="string"/>
+        <element label="Meeting ID" mandatory="true" max_length="20" name="meeting_id" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" mandatory="true" max_length="40" name="number" type="string"/>
+        <element label="Start Time" mandatory="true" max_length="40" name="start_time" type="glide_date_time"/>
+        <element label=" Topic" max_length="40" name="topic" type="string"/>
+    </element>
+</database>

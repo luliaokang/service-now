@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[function showNewPage(){
+	GlideDialogWindow.get().destroy();
+	var gdw = new GlideDialogWindow('x_299591_zoomdev_Add_Meeting'); 
+	gdw.setSize(500,300);
+    gdw.adjustBodySize();
+	gdw.render();
+	gdw.setTitle("New Meeting");
+	gdw.render();
+}]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_299591_zoomdev_Meetings.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<j:set var = "sysparm_id" value = "${sysparm_id}" />
+	<g:evaluate> 
+		var meetings = new GlideRecord('x_299591_zoomdev_zoom_meeting');
+		meetings.addQuery('incident', '${sysparm_id}');
+		var gdtnow = new GlideDateTime();
+		meetings.addQuery("start_time>"+gdtnow);
+		meetings.query(); 
+    </g:evaluate>
+	<div>
+		<button onclick="showNewPage()" class="btn btn-primary">New</button>
+		<table width="100%">
+			<j:while test = "${meetings.next()}"> 
+				<tr>
+					<td align="center" valign="middle" class="container-td">
+						 ${meetings.topic}
+					</td>		
+					<td align="center" valign="middle" class="container-td">
+						 ${meetings.meeting_id}
+					</td>	
+					<td align="center" valign="middle" class="container-td">
+						 ${meetings.start_time}
+					</td>
+					<td align="center" valign="middle" class="container-td">
+						 <button onclick="save()" class="btn btn-primary">join</button>
+					</td>	
+					
+				</tr>
+			</j:while> 
+		</table>
+	</div>
+</j:jelly>]]></html>
+        <name>Meetings</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-12-29 05:28:22</sys_created_on>
+        <sys_id>9673a563db2e23003aae85184b96196f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Meetings</sys_name>
+        <sys_package display_value="zoomdev" source="x_299591_zoomdev">60a6ae66dbe663003aae85184b9619a0</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="zoomdev">60a6ae66dbe663003aae85184b9619a0</sys_scope>
+        <sys_update_name>sys_ui_page_9673a563db2e23003aae85184b96196f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-12-29 05:28:22</sys_updated_on>
+    </sys_ui_page>
+</record_update>
